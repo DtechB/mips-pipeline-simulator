@@ -5,7 +5,11 @@
 import * as G_UTL from "./G_UTL";
 
 // Program Counter
-export const PC: number = 0;
+export let PC: number = 0;
+
+export const changePC = (value: number) => {
+  PC = value;
+};
 
 // Instruction Memory
 export const INST: string[] = [];

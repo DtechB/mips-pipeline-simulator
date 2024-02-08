@@ -86,9 +86,13 @@ export const EFLOW: number = -3;
 export const ERROR: number[] = [EINST, EARG, EFLOW];
 
 // Enable or disable hazard protections
-export const data_hzd: boolean = true;
-export const ctrl_hzd: boolean = true;
+export const hazard: { [key: string]: boolean } = {
+  data_hzd: true,
+  ctrl_hzd: true,
+};
 
 // Forwarding+Hazard Units helper variables
-export const outFwdA: number = 0;
-export const outFwdB: number = 0;
+export const forward: { [key: string]: number } = {
+  outFwdA: 0,
+  outFwdB: 0,
+};
