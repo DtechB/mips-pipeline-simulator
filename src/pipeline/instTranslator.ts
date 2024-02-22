@@ -20,13 +20,18 @@ import * as G_UTL from "./G_UTL";
 export function encode(inst: string): number {
   inst = inst.replace(/,/g, ""); // Ignore commas
 
+  console.log(inst);
+
   // Replace register names with its index
   for (let i = 0; i < G_UTL.regNames.length; i++) {
-    inst = inst.replace(G_UTL.regNames[i], i.toString());
+    inst = inst.split(G_UTL.regNames[i]).join(i.toString());
   }
   inst = inst.replace(/\$/g, ""); // $0, $4, $7, etc.
 
-  const instArray = inst.split(" ");
+  let instArray = inst.split(" ");
+  instArray = instArray.filter((item) => item != "");
+
+  console.log(instArray);
 
   let out = G_UTL.EINST;
   if (instArray[0] in G_UTL.rTypeWords) {
@@ -119,11 +124,14 @@ export function encode(inst: string): number {
       }
 
       // Encode
-      out |= rs;
+      out |= nrs;
       out <<= 5;
-      out |= rt;
+      out |= nrt;
       out <<= 16;
-      out |= offset;
+      out |= noffset;
+      if (out < 0) {
+        out = out >>> 0;
+      }
     } catch (error) {
       if (error instanceof Error) {
         if (error.message === "Not correct number of arguments") {
@@ -135,7 +143,7 @@ export function encode(inst: string): number {
     out = 0b000100 << 5;
 
     try {
-      const [offset, rt, rs] = instArray.slice(2).map((i) => parseInt(i, 0)); // Accepts any base (e.g. 0b, 0o, 0x)
+      const [rs, rt, offset] = instArray.slice(1).map((i) => parseInt(i, 0)); // Accepts any base (e.g. 0b, 0o, 0x)
       if (isNaN(offset) || isNaN(rt) || isNaN(rs)) {
         throw new Error("Not correct number of arguments");
       }
@@ -149,11 +157,14 @@ export function encode(inst: string): number {
       }
 
       // Encode
-      out |= rs;
+      out |= nrs;
       out <<= 5;
-      out |= rt;
+      out |= nrt;
       out <<= 16;
-      out |= offset;
+      out |= noffset;
+      if (out < 0) {
+        out = out >>> 0;
+      }
     } catch (error) {
       if (error instanceof Error) {
         if (error.message === "Not correct number of arguments") {
@@ -165,7 +176,8 @@ export function encode(inst: string): number {
     out = 0b001000 << 5;
 
     try {
-      const [imm, rs, rt] = instArray.slice(2).map((i) => parseInt(i, 0)); // Accepts any base (e.g. 0b, 0o, 0x)
+      const [rt, rs, imm] = instArray.slice(1).map((i) => parseInt(i, 0)); // Accepts any base (e.g. 0b, 0o, 0x)
+      console.log(rt, rs, imm);
       if (isNaN(imm) || isNaN(rs) || isNaN(rt)) {
         throw new Error("Not correct number of arguments");
       }
@@ -186,6 +198,7 @@ export function encode(inst: string): number {
       out |= imm;
     } catch (error) {
       if (error instanceof Error) {
+        console.log(error);
         if (error.message === "Not correct number of arguments") {
           return G_UTL.EARG;
         }
