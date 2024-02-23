@@ -108,6 +108,7 @@ export function IF(): void {
   let curInst;
   try {
     curInst = INST[PC / 4];
+    if (curInst == undefined) throw Error;
   } catch (error) {
     curInst = 0;
   }
@@ -139,7 +140,8 @@ export function ID(): void {
     ID_EX_CTRL.BRANCH = 0;
     ID_EX_CTRL.ALU_OP = 0;
   } else {
-    const opcode = (IF_ID.IR & 0xfc000000) >> 26;
+    let opcode = (IF_ID.IR & 0xfc000000) >>> 26;
+    console.log(IF_ID.IR);
     ID_EX_CTRL.REG_DST = ctrl[opcode][0];
     ID_EX_CTRL.ALU_SRC = ctrl[opcode][1];
     ID_EX_CTRL.MEM_TO_REG = ctrl[opcode][2];

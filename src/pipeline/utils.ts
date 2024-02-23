@@ -156,7 +156,11 @@ export function printPipelineRegs(): void {
 
 export function printPC(): void {
   console.log("                                   ╔════[PC]════╗");
-  console.log("                                   ║ [{:08X}] ║", G_MEM.PC);
+  console.log(
+    `                                   ║ [${Number(G_MEM.PC)
+      .toString(16)
+      .padStart(8, "0")}] ║`
+  );
   console.log("                                   ╚════════════╝");
 }
 
