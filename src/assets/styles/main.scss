@@ -1,3 +1,33 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.move-enter-active,
+.move-leave-active {
+  transition: all 0.3s;
+}
+
+.move-enter-from,
+.move-leave-to {
+  transform: translateX(100%);
+}
+
+.move-enter-to,
+.move-leave-from {
+  transform: translateX(0);
+}
+
+.moveL-enter-active,
+.moveL-leave-active {
+  transition: all 0.3s;
+}
+
+.moveL-enter-from,
+.moveL-leave-to {
+  transform: translateX(-100%);
+}
+
+.moveL-enter-to,
+.moveL-leave-from {
+  transform: translateY(0);
+}

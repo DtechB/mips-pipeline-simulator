@@ -20,8 +20,6 @@ import * as G_UTL from "./G_UTL";
 export function encode(inst: string): number {
   inst = inst.replace(/,/g, ""); // Ignore commas
 
-  console.log(inst);
-
   // Replace register names with its index
   for (let i = 0; i < G_UTL.regNames.length; i++) {
     inst = inst.split(G_UTL.regNames[i]).join(i.toString());
@@ -30,8 +28,6 @@ export function encode(inst: string): number {
 
   let instArray = inst.split(" ");
   instArray = instArray.filter((item) => item != "");
-
-  console.log(instArray);
 
   let out = G_UTL.EINST;
   if (instArray[0] in G_UTL.rTypeWords) {

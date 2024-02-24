@@ -8,6 +8,15 @@ dependencies:
   '@iconify-json/bi':
     specifier: ^1.1.23
     version: 1.1.23
+  '@iconify-json/heroicons-solid':
+    specifier: ^1.1.11
+    version: 1.1.11
+  '@iconify-json/logos':
+    specifier: ^1.1.42
+    version: 1.1.42
+  '@iconify-json/mdi':
+    specifier: ^1.1.64
+    version: 1.1.64
   sass:
     specifier: ^1.70.0
     version: 1.70.0
@@ -283,6 +292,24 @@ packages:
 
   /@iconify-json/bi@1.1.23:
     resolution: {integrity: sha512-1te+g9ZzI+PU1Lv6Xerd3XPXf4DE6g3TvDL2buIopTAfrauPHyXCHPFQMrzoQVNrVPCpN3rv3vBtJMPyBwJ9IA==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
+  /@iconify-json/heroicons-solid@1.1.11:
+    resolution: {integrity: sha512-Nzhjs8voo4d+gcrfhlY/F0bRonEmLHT1+DeD2nYubvAF151pxXPqTS9bRB49Hqpdxl1l9LS2VTPtQPRypj/csQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
+  /@iconify-json/logos@1.1.42:
+    resolution: {integrity: sha512-/f+frtPm3m3Z30oy8Pk+QqRDkbmAiIaWGPl5CmsCXm15MVfvw9a/V/gD7WzdyuSGAZcFuQaqbHXj92y/n+2ifg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
+  /@iconify-json/mdi@1.1.64:
+    resolution: {integrity: sha512-zGeo5TjhNFAY6FmSDBLAzDO811t77r6v/mDi7CAL9w5eXqKez6bIjk8R9AL/RHIeq44ALP4Ozr4lMqFTkHr7ug==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: false
