@@ -3,12 +3,10 @@ import * as instTranslator from "./instTranslator";
 import * as G_MEM from "./G_MEM";
 import * as G_UTL from "./G_UTL";
 
-export async function readFile(filename: string): Promise<string[]> {
-  const response = await fetch("../src/pipeline/program.asm");
-  if (!response.ok) {
-    throw new Error(`Failed to fetch file: ${filename}`);
-  }
-  const fileContent: string = await response.text();
+export async function readFile(): Promise<string[]> {
+  const fileContent: string = JSON.parse(
+    localStorage.getItem("MISP-string-file")!
+  );
   const lines: string[] = fileContent
     .split("\n")
     .map((line) => line.trim())

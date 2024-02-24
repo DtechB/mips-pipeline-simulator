@@ -9,12 +9,12 @@ import * as G_UTL from "./pipeline/G_UTL";
 import * as stages from "./pipeline/stages";
 import * as instTranslator from "./pipeline/instTranslator";
 import * as utils from "./pipeline/utils";
+import { setBaseFile } from "./utils/index";
 
 const main = async () => {
-  let filename: string = "program.asm";
-
+  await setBaseFile();
   // Read .asm
-  const program: any = await utils.readFile(filename);
+  const program: any = await utils.readFile();
   const programLength: number = program.length;
 
   // Encode and load .asm into memory
@@ -31,7 +31,6 @@ const main = async () => {
     if (encoded !== null && !G_UTL.ERROR.includes(encoded)) {
       G_MEM.INST.push(encoded.toString());
     } else {
-      console.log(`ERROR @ '${filename}':`);
       console.log(`\tLine ${i + 1}: '${program[i]}'`);
       if (encoded === G_UTL.EINST) {
         console.log("\t\tCouldn't parse the instruction");
