@@ -6,6 +6,7 @@ import Index from "../views/index.vue";
 import States from "../views/Pipeline/states.vue";
 import Display from "../views/Pipeline/display.vue";
 import File from "../views/File/index.vue";
+import Pipeline from "../views/Pipeline/index.vue";
 
 const routes: Array<CustomRouterRecord> = [
   {
@@ -18,6 +19,21 @@ const routes: Array<CustomRouterRecord> = [
         path: "",
         name: "main page",
         component: Index,
+      },
+    ],
+    meta: { requiresAuth: false },
+    component: Layout,
+  },
+  {
+    path: "/pipeline",
+    name: "pipeline",
+    showSidebar: true,
+    hasChild: true,
+    children: [
+      {
+        path: "",
+        name: "main pipeline",
+        component: Pipeline,
       },
     ],
     meta: { requiresAuth: false },

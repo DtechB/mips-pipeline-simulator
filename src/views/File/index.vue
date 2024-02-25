@@ -39,9 +39,13 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
+import { runPipeline } from "../../pipeline/mips";
 import { showNotification } from "../../plugins/toast";
 // import { isAssemblyCodeFormatCorrect } from "../utils/index";
+
+const router = useRouter();
 
 const code: Ref<string> = ref(
   JSON.parse(localStorage.getItem("MISP-string-file")!)
@@ -53,5 +57,7 @@ const addFile = () => {
     return;
   }
   // console.log(isAssemblyCodeFormatCorrect(code.value));
+  runPipeline();
+  router.push("/pipeline");
 };
 </script>

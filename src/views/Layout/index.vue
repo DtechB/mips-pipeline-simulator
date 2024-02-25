@@ -134,6 +134,28 @@
                   class="flex-1 px-4 space-y-2 overflow-hidden hover:overflow-auto"
                 >
                   <div
+                    @click="router.push('/pipeline')"
+                    class="flex items-center w-full space-x-2 hover:bg-indigo-600 hover:text-white rounded-lg cursor-pointer"
+                    :class="
+                      route.path == '/pipeline'
+                        ? 'bg-indigo-600 text-white'
+                        : 'text-indigo-600'
+                    "
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="flex items-center p-2 transition-colors rounded-lg group group-hover:bg-indigo-700 group-hover:text-white"
+                      :class="
+                        route.path == '/pipeline'
+                          ? 'bg-indigo-700 text-white'
+                          : ''
+                      "
+                    >
+                      <span class="icon-[mdi--file-outline] size-6"></span>
+                    </span>
+                    <span>Pipeline program</span>
+                  </div>
+                  <div
                     @click="router.push('/pipeline/states')"
                     class="flex items-center w-full space-x-2 hover:bg-indigo-600 hover:text-white rounded-lg cursor-pointer"
                     :class="

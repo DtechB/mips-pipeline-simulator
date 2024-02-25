@@ -77,7 +77,11 @@ export const regNames: string[] = [
 ];
 
 // Data Memory size, can be changed to any multiple of 4
-export const DATA_SIZE: number = 16;
+export let DATA_SIZE: number = 16;
+
+export const setDataSize = (data: number) => {
+  DATA_SIZE = data;
+};
 
 // Error Signals
 export const EINST: number = -1;
