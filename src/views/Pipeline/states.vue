@@ -4,7 +4,7 @@
     class="container mx-auto px-[5%] overflow-y-auto overflow-x-hidden"
     style="height: calc(100vh - 72px)"
   >
-    <div class="top-0 sticky border-b bg-gray-100 pb-2 mb-4">
+    <div class="top-0 sticky border-b bg-gray-100 pb-2 mb-4 z-30">
       <!----- buttons menu ------>
       <div class="flex justify-center">
         <div
