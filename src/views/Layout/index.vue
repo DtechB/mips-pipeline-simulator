@@ -8,7 +8,7 @@
         <div
           v-show="isSidebarOpen"
           @click="isSidebarOpen = false"
-          class="fixed inset-0 z-20 bg-black bg-opacity-50 lg:hidden"
+          class="fixed inset-0 z-10 bg-black bg-opacity-50 lg:hidden"
         ></div>
         <div
           v-show="isSidebarOpen"
