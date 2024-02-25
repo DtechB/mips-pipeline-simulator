@@ -5,6 +5,7 @@ import Layout from "../views/Layout/index.vue";
 import Index from "../views/index.vue";
 import States from "../views/Pipeline/states.vue";
 import Display from "../views/Pipeline/display.vue";
+import File from "../views/File/index.vue";
 
 const routes: Array<CustomRouterRecord> = [
   {
@@ -47,6 +48,21 @@ const routes: Array<CustomRouterRecord> = [
         path: "",
         name: "pipeline-states",
         component: States,
+      },
+    ],
+    meta: { requiresAuth: false },
+    component: Layout,
+  },
+  {
+    path: "/file",
+    name: "file",
+    showSidebar: true,
+    hasChild: true,
+    children: [
+      {
+        path: "",
+        name: "file-add",
+        component: File,
       },
     ],
     meta: { requiresAuth: false },

@@ -23,14 +23,14 @@
           <!-- Menu button -->
           <button
             @click="
-              isSidebarOpen && route.path == '/'
+              isSidebarOpen && currentSidebarTab == 'linksTab'
                 ? (isSidebarOpen = false)
                 : (isSidebarOpen = true);
-              router.push('/');
+              currentSidebarTab = 'linksTab';
             "
             class="flex justify-center items-center p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
             :class="
-              isSidebarOpen && route.path == '/'
+              isSidebarOpen && currentSidebarTab == 'linksTab'
                 ? 'text-white bg-indigo-600'
                 : 'text-gray-500 bg-white'
             "
@@ -55,6 +55,18 @@
             <img src="/src/assets/images/logo.png" alt="" class="w-12" />
           </div>
           <div class="flex flex-col items-center flex-1 p-2 space-y-4">
+            <!-- Home button -->
+            <button
+              @click="router.push('/')"
+              class="flex justify-center items-center p-2 transition-colors rounded-lg shadow-md hover:bg-indigo-800 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+              :class="
+                route.path == '/'
+                  ? 'text-white bg-indigo-600'
+                  : 'text-gray-500 bg-white'
+              "
+            >
+              <span class="icon-[heroicons--home] size-6"></span>
+            </button>
             <!-- Files button -->
             <button
               @click="
@@ -176,10 +188,10 @@
               >
                 <h2 class="text-xl font-medium mb-9">Files</h2>
                 <div
-                  @click="router.push('/')"
+                  @click="router.push('/file')"
                   class="flex items-center space-x-2 transition-colors rounded-lg group hover:bg-indigo-600 hover:text-white cursor-pointer"
                   :class="
-                    route.path == '/'
+                    route.path == '/file'
                       ? 'bg-indigo-600 text-white'
                       : 'text-indigo-600'
                   "
@@ -187,7 +199,9 @@
                   <span
                     aria-hidden="true"
                     class="p-2 transition-colors rounded-lg group-hover:bg-indigo-700 group-hover:text-white flex items-center"
-                    :class="route.path == '/' ? 'bg-indigo-700 text-white' : ''"
+                    :class="
+                      route.path == '/file' ? 'bg-indigo-700 text-white' : ''
+                    "
                   >
                     <span
                       class="icon-[mdi--file-document-add-outline] size-6"
@@ -321,6 +335,7 @@
                   />
                 </svg>
               </button>
+
               <!-- Files button -->
               <button
                 @click="
@@ -332,6 +347,16 @@
               >
                 <span class="sr-only">Toggle files panel</span>
                 <span class="icon-[bi--file-text] size-6"></span>
+              </button>
+              <button
+                @click="
+                  router.push('/');
+                  isSubHeaderOpen = false;
+                "
+                class="flex justify-center items-center p-2 text-gray-400 bg-white rounded-lg shadow-md hover:text-gray-600 focus:outline-none focus:ring focus:ring-white focus:ring-offset-gray-100 focus:ring-offset-4"
+              >
+                <span class="sr-only">Toggle files panel</span>
+                <span class="icon-[heroicons--home] size-6"></span>
               </button>
               <!-- Github link -->
               <a
