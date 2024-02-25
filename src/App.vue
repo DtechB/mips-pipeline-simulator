@@ -9,9 +9,11 @@ import * as G_UTL from "./pipeline/G_UTL";
 import * as stages from "./pipeline/stages";
 import * as instTranslator from "./pipeline/instTranslator";
 import * as utils from "./pipeline/utils";
-import { setBaseFile } from "./utils/index";
+import { setBaseFile, storeClocks } from "./utils/index";
 
 const main = async () => {
+  localStorage.setItem("MIPS-Clocks", JSON.stringify([]));
+
   await setBaseFile();
   // Read .asm
   const program: any = await utils.readFile();
@@ -125,6 +127,8 @@ const main = async () => {
         return;
       }
     }
+
+    storeClocks();
   }
 
   if (silent) {

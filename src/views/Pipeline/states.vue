@@ -49,36 +49,68 @@
       </div>
 
       <!----- clock ------>
-      <h3 class="text-center text-xl mt-2">Clock #1</h3>
+      <div class="flex justify-between items-center">
+        <button
+          @click="previousClk"
+          type="button"
+          class="rounded px-3 py-1.5 text-sm font-medium text-white"
+          :disabled="currentClock == 1"
+          :class="
+            currentClock == 1
+              ? 'bg-indigo-300'
+              : 'bg-indigo-600 hover:bg-indigo-700'
+          "
+        >
+          previous clk
+        </button>
+        <h3 class="text-center text-xl mt-2">Clock #{{ currentClock }}</h3>
+        <button
+          @click="nextClk"
+          type="button"
+          class="rounded px-3 py-1.5 text-sm font-medium text-white"
+          :disabled="currentClock == clocks.length"
+          :class="
+            currentClock == clocks.length
+              ? 'bg-indigo-300'
+              : 'bg-indigo-600 hover:bg-indigo-700'
+          "
+        >
+          next clk
+        </button>
+      </div>
     </div>
 
     <!----- Overview ------>
-    <div id="overview">
+    <div id="overview" class="mb-5">
       <h3 class="text-lg font-medium mb-2">Overview</h3>
-      <PipelineOverview />
-      <div class="h-96"></div>
+      <PipelineOverview v-if="clocks.length" :data="clocks[currentClock - 1]" />
     </div>
 
     <!----- Pipeline registers ------>
-    <div id="pipeline-regs">
+    <div id="pipeline-regs" class="mb-5">
       <h3 class="text-lg font-medium mb-2">Pipeline Registers</h3>
-      <PipelineOverview />
-      <div class="h-96"></div>
+      <PipelineRegisters
+        v-if="clocks.length"
+        :data="clocks[currentClock - 1]"
+      />
     </div>
 
     <!----- Memory and registers ------>
-    <div id="memory">
+    <div id="memory" class="mb-10">
       <h3 class="text-lg font-medium mb-2">Memory and Registers</h3>
-      <PipelineOverview />
+      <PipelineMemory v-if="clocks.length" :data="clocks[currentClock - 1]" />
       <div class="h-96"></div>
+      <!-- <div class="h-96"></div> -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, onBeforeUnmount, ref } from "vue";
+import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
 
 import PipelineOverview from "../../components/Pipeline/Overview.vue";
+import PipelineRegisters from "../../components/Pipeline/Registers.vue";
+import PipelineMemory from "../../components/Pipeline/Memory.vue";
 
 const activeSection = ref("overview");
 
@@ -114,7 +146,26 @@ const isSectionInViewport = (element: any) => {
 onBeforeMount(() => {
   window.addEventListener("scroll", updateActiveSection);
 });
+
+const clocks = ref([]);
+const currentClock = ref(1);
+onMounted(() => {
+  if (localStorage.getItem("MIPS-Clocks")) {
+    clocks.value = JSON.parse(localStorage.getItem("MIPS-Clocks")!);
+  }
+  console.log(clocks.value);
+});
+
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", updateActiveSection);
 });
+
+const nextClk = () => {
+  if (currentClock.value === clocks.value.length) return;
+  currentClock.value += 1;
+};
+const previousClk = () => {
+  if (currentClock.value === 1) return;
+  currentClock.value -= 1;
+};
 </script>

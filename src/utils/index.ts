@@ -1,3 +1,5 @@
+import * as G_MEM from "../pipeline/G_MEM";
+
 export const setBaseFile = async () => {
   if (localStorage.getItem("MISP-string-file")) return;
   const response = await fetch("../src/utils/program.asm");
@@ -55,4 +57,29 @@ export const loadSettings = () => {
   }
 
   return settings;
+};
+
+export const storeClocks = () => {
+  let clk = {
+    INST: G_MEM.INST,
+    DATA: G_MEM.DATA,
+    FWD: G_MEM.FWD,
+    REGS: G_MEM.REGS,
+    PC: G_MEM.PC,
+    IF_ID: G_MEM.IF_ID,
+    ID_EX: G_MEM.ID_EX,
+    EX_MEM: G_MEM.EX_MEM,
+    MEM_WB: G_MEM.MEM_WB,
+    ID_EX_CTRL: G_MEM.ID_EX_CTRL,
+    EX_MEM_CTRL: G_MEM.EX_MEM_CTRL,
+    MEM_WB_CTRL: G_MEM.MEM_WB_CTRL,
+  };
+
+  if (localStorage.getItem("MIPS-Clocks")) {
+    let data: any[] = JSON.parse(localStorage.getItem("MIPS-Clocks")!);
+    data.push(clk);
+    localStorage.setItem("MIPS-Clocks", JSON.stringify(data));
+  } else {
+    localStorage.setItem("MIPS-Clocks", JSON.stringify([]));
+  }
 };
