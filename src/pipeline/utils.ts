@@ -311,6 +311,8 @@ export function printHistory(clkHistory: any[][]): void {
     "╠═════╬════════════════════════╬" + "═".repeat(6 * clkHistory.length) + "╣"
   );
 
+  localStorage.setItem("MIPS-Clock-History", JSON.stringify(history));
+
   // Print history board
   for (let i = 0; i < history.length; i++) {
     console.log(
