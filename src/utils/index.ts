@@ -39,3 +39,20 @@ export const isAssemblyCodeFormatCorrect = (assemblyCode: string): boolean => {
   }
   return true; // All lines match the instruction format
 };
+
+export const loadSettings = () => {
+  let settings = {
+    dataHazard: {
+      control: true,
+      data: true,
+    },
+    memorySize: 16,
+  };
+  if (localStorage.getItem("MIPS-Settings")) {
+    settings = JSON.parse(localStorage.getItem("MIPS-Settings")!);
+  } else {
+    localStorage.setItem("MIPS-Settings", JSON.stringify(settings));
+  }
+
+  return settings;
+};

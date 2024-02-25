@@ -8,7 +8,7 @@
         <div
           v-show="isSidebarOpen"
           @click="isSidebarOpen = false"
-          class="fixed inset-0 z-10 bg-black bg-opacity-50 lg:hidden"
+          class="fixed inset-0 z-20 bg-black bg-opacity-50 lg:hidden"
         ></div>
         <div
           v-show="isSidebarOpen"
@@ -408,6 +408,11 @@
       >
         <div class="px-4 py-8">
           <h2 class="text-lg font-semibold">Settings</h2>
+          <Settings
+            v-if="isSettingsPanelOpen"
+            @close-sidebar="isSettingsPanelOpen = false"
+            class="mt-8"
+          />
         </div>
       </section>
     </Transition>
@@ -452,6 +457,8 @@
 import type { Ref } from "vue";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
+import Settings from "../../components/Settings.vue";
 
 const route = useRoute();
 const router = useRouter();

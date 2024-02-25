@@ -19,7 +19,7 @@
         class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-indigo-800 to-transparent opacity-75"
       ></div>
 
-      <span class="relative z-10 bg-gray-100 text-lg font-medium px-6"
+      <span class="relative bg-gray-100 text-lg font-medium px-6"
         >Supported Instructions</span
       >
     </span>
@@ -218,7 +218,7 @@
         class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"
       ></div>
 
-      <span class="relative z-10 bg-gray-100 text-lg font-medium px-6"
+      <span class="relative bg-gray-100 text-lg font-medium px-6"
         >Data Path</span
       >
     </span>
@@ -226,6 +226,12 @@
     <!-- <img src="../assets/images/diagram.png" alt="" class="w-1/2 mb-5 mx-auto" /> -->
     <div class="text-center w-1/3 mb-10 mx-auto">
       <FullScreenImage :imageUrl="'/src/assets/images/diagram.png'" />
+    </div>
+
+    <div class="flex items-center justify-center mb-5">
+      Copyright © 2024 DtechB -
+      <img src="/src/assets/images/logo.png" alt="" class="w-10" /> Danial
+      Bayati
     </div>
   </div>
 </template>
