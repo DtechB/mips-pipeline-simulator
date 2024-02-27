@@ -57,6 +57,7 @@ const addFile = () => {
     return;
   }
   // console.log(isAssemblyCodeFormatCorrect(code.value));
+  localStorage.setItem("MISP-string-file", JSON.stringify(code.value));
   runPipeline();
   router.push("/pipeline");
 };

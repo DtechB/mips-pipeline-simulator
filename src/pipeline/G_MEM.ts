@@ -18,7 +18,10 @@ export const INST: string[] = [];
 export const REGS: number[] = new Array(32).fill(0);
 
 // Data Memory
-export const DATA: number[] = new Array(G_UTL.DATA_SIZE).fill(0);
+export let DATA: number[] = new Array(G_UTL.DATA_SIZE).fill(0);
+export const setDataMemory = (size: number) => {
+  DATA = new Array(size).fill(0);
+};
 
 // Pipeline Registers
 export const IF_ID: { [key: string]: number } = { NPC: 0, IR: 0 };

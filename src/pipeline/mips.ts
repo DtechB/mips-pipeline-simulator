@@ -13,6 +13,7 @@ export const runPipeline = async () => {
   G_UTL.setDataSize(settings.memorySize);
   G_UTL.hazard.data_hzd = settings.dataHazard.data;
   G_UTL.hazard.ctrl_hzd = settings.dataHazard.control;
+  G_MEM.setDataMemory(settings.memorySize);
 
   // Read .asm
   const program: any = await utils.readFile();
